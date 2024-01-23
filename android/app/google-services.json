@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "156964482017",
+    "project_id": "abnews-f88ad",
+    "storage_bucket": "abnews-f88ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156964482017:android:00966e6c3f242493cd00a0",
+        "android_client_info": {
+          "package_name": "com.example.ab_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUA651JFvFWeBOq-ZPzIKFws3pgxg8fXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
