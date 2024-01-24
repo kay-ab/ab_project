@@ -1,17 +1,18 @@
-import 'package:ab_project/ui/register_screen.dart';
+import 'package:ab_project/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
 
     final key = GlobalKey<FormState>();
+    TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
 
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(padding: EdgeInsets.all(20),
             child: Column(children: [
               SizedBox(height: 20,),
-              Center(child: Text('Login', style: TextStyle(
+              Center(child: Text('Register', style: TextStyle(
                 color: Colors.white,
                 fontSize: 40,
               ),)),
@@ -52,6 +53,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         key: key,
                         child: Column(
                         children: [
+                          Container(
+                            padding: EdgeInsets.all(10),
+                            child: TextFormField(
+                              controller: nameController,
+                              decoration: InputDecoration(
+                                hintText: 'Enter Your Name',
+                                hintStyle: TextStyle(color: Colors.grey)
+                              ),
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Name is required.';
+                                }
+                              },
+                            ),
+                          ),
                           Container(
                             padding: EdgeInsets.all(10),
                             child: TextFormField(
@@ -86,10 +102,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       )),
                       SizedBox(height: 40,),
                       TextButton(onPressed: (){
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (contex){
-                          return RegisterScreen();
-                        }));
-                      }, child: Text('Create New Register', style: TextStyle(color: Colors.blue),)),
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>
+                          LoginScreen()
+                        ));
+                      }, child: Text('Please Login', style: TextStyle(color: Colors.blue),)),
                       Container(
                         decoration: BoxDecoration(
                           color: Colors.red,
@@ -101,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (key.currentState!.validate()) {
                             print(emailController.text);
                           }
-                        }, child: Text('Login', style: TextStyle(color: Colors.white),)),
+                        }, child: Text('Register', style: TextStyle(color: Colors.white),)),
                       )
                     ]),
                   )
