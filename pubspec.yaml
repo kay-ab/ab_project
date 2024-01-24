@@ -38,6 +38,10 @@ dependencies:
   cloud_firestore: ^4.14.0
   firebase_database: ^10.4.0
   firebase_core: ^2.24.2
+  provider: ^6.1.1
+  json_annotation: ^4.8.1
+  json_serializable: ^6.7.1
+  build_runner: ^2.4.8
 
 dev_dependencies:
   flutter_test:
