@@ -1,7 +1,10 @@
 // import 'package:firebase_core/firebase_core.dart';
+// import 'dart:js';
+
 import 'dart:js';
 
 import 'package:ab_project/auth/login_status.dart';
+import 'package:ab_project/auth/store.dart';
 import 'package:ab_project/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,6 +15,7 @@ void main() async {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => LoginStatus()),
+      ChangeNotifierProvider(create: (context)=> Store()),
     ],
     child: MyApp(),
     )

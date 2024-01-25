@@ -1,5 +1,11 @@
+import 'package:ab_project/auth/api_client.dart';
+import 'package:ab_project/auth/store.dart';
+import 'package:ab_project/models/message.dart';
+import 'package:ab_project/models/user.dart';
 import 'package:ab_project/ui/login_screen.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
 
@@ -8,6 +14,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  String message = '';
   @override
   Widget build(BuildContext context) {
 
@@ -31,10 +38,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 fontSize: 40,
               ),)),
               SizedBox(height: 15,),
-              // Center(child: Text('Please Login Here!', style: TextStyle(
-              //   color: Colors.white,
-              //   fontSize: 20
-              //  ))),
+              Center(child: Text("${message}", style: TextStyle(
+                color: Colors.white,
+                fontSize: 20
+               ))),
             ]),
           ),
           Expanded(child: Container(
@@ -61,11 +68,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Name',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              validator: (val) {
-                                if (val == null || val.isEmpty) {
-                                  return 'Name is required.';
-                                }
-                              },
+                              // validator: (val) {
+                              //   if (val == null || val.isEmpty) {
+                              //     return 'Name is required.';
+                              //   }
+                              // },
                             ),
                           ),
                           Container(
@@ -76,11 +83,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Email',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              validator: (val) {
-                                if (val == null || val.isEmpty) {
-                                  return 'Email is required.';
-                                }
-                              },
+                              // validator: (val) {
+                              //   if (val == null || val.isEmpty) {
+                              //     return 'Email is required.';
+                              //   }
+                              // },
                             ),
                           ),
                           Container(
@@ -91,11 +98,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Password',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              validator: (val) {
-                                if (val == null || val.isEmpty) {
-                                  return 'Password is required.';
-                                }
-                              },
+                              // validator: (val) {
+                              //   if (val == null || val.isEmpty) {
+                              //     return 'Password is required.';
+                              //   }
+                              // },
                             ),
                           )
                         ],
@@ -113,9 +120,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         height: 50,
                         width: MediaQuery.of(context).size.width * 0.5,
-                        child: OutlinedButton(onPressed: (){
+                        child: OutlinedButton(onPressed: ()async{
                           if (key.currentState!.validate()) {
-                            print(emailController.text);
+                            //send to laravel api
+                            User user = User(nameController.text, emailController.text, passwordController.text);
+                            Message mess = await ApiClient(Dio()).register(user);
+                            // print(mess.api);
+                            if(mess.api != '') {
+                              Provider.of<Store>(context, listen: false).setApi(mess.api);
+                              setState(() {
+                                message = mess.message;
+                              });
+                            }
                           }
                         }, child: Text('Register', style: TextStyle(color: Colors.white),)),
                       )
