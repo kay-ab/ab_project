@@ -68,11 +68,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Name',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              // validator: (val) {
-                              //   if (val == null || val.isEmpty) {
-                              //     return 'Name is required.';
-                              //   }
-                              // },
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Name is required.';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Container(
@@ -83,11 +84,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Email',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              // validator: (val) {
-                              //   if (val == null || val.isEmpty) {
-                              //     return 'Email is required.';
-                              //   }
-                              // },
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Email is required.';
+                                }
+                                return null;
+                              },
                             ),
                           ),
                           Container(
@@ -98,11 +100,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 hintText: 'Enter Your Password',
                                 hintStyle: TextStyle(color: Colors.grey)
                               ),
-                              // validator: (val) {
-                              //   if (val == null || val.isEmpty) {
-                              //     return 'Password is required.';
-                              //   }
-                              // },
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'Password is required.';
+                                }
+                                return null;
+                              },
                             ),
                           )
                         ],
