@@ -30,26 +30,51 @@ class _homeState extends State<home>
   @override
   Widget build(BuildContext context) {
     String api = Provider.of<Store>(context).getApi();
-    return SingleChildScrollView(
-      child: StreamBuilder<List<Post>>(stream: ApiClient(Dio()).getAllPosts('Bearer ${api}'),
-        builder: (context, AsyncSnapshot<List<Post>> snapShots) {
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: snapShots.data!.length,
-            itemBuilder: (context,index) {
-              return Card(
-                child: Row(
-                  children: [
-                    Container(
-                      child: Text("${snapShots.data![index].name}"),
-                    )
-                  ],
-                ),
+    return Scaffold(
+      appBar: AppBar(title: Text('Post List Page')),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+
+      }, child: Icon(Icons.add),),
+      body: SingleChildScrollView(
+        child: StreamBuilder<List<Post>>(stream: ApiClient(Dio()).getAllPosts('Bearer ${api}'),
+          builder: (context, AsyncSnapshot<List<Post>> snapShots) {
+            return ListView.builder(
+              shrinkWrap: true,
+              itemCount: snapShots.data!.length,
+              itemBuilder: (context,index) {
+                return Container(
+                  padding: EdgeInsets.all(20),
+                  child: Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(20),
+                          height: 80,
+                          alignment: Alignment.center,
+                          child: Text("${snapShots.data![index].name}", style: TextStyle(color: Colors.red, fontSize: 18),),
+                        ),
+                        Row(
+                          children: [
+                            
+                            TextButton(onPressed: (){
+
+                            }, child: Icon(Icons.edit)),
+                            TextButton(onPressed: (){
+
+                            }, child: Icon(Icons.delete))
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                );
+              }
               );
-            }
-            );
-        },
-      ),
+          },
+        ),
+      )
     );
+    
   }
 }
