@@ -18,4 +18,7 @@ abstract class ApiClient {
 
   @GET('/posts')
   Stream<List<Post>> getAllPosts(@Header('Authorization') String authApi);
+
+  @POST('/post')
+  Future<Message> createPost(@Header('Authorization') String authApi , @Body() Post post);
 }

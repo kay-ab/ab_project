@@ -1,6 +1,7 @@
 import 'package:ab_project/auth/api_client.dart';
 import 'package:ab_project/auth/store.dart';
 import 'package:ab_project/models/post.dart';
+import 'package:ab_project/ui/add_post.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class _homeState extends State<home>
     return Scaffold(
       appBar: AppBar(title: Text('Post List Page')),
       floatingActionButton: FloatingActionButton(onPressed: (){
-
+        Navigator.push(context, MaterialPageRoute(builder: (contex)=>AddPost()));
       }, child: Icon(Icons.add),),
       body: SingleChildScrollView(
         child: StreamBuilder<List<Post>>(stream: ApiClient(Dio()).getAllPosts('Bearer ${api}'),
@@ -43,7 +44,7 @@ class _homeState extends State<home>
               itemCount: snapShots.data!.length,
               itemBuilder: (context,index) {
                 return Container(
-                  padding: EdgeInsets.all(20),
+                  // padding: EdgeInsets.all(20),
                   child: Card(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
