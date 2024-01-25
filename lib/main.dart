@@ -5,6 +5,7 @@ import 'dart:js';
 
 import 'package:ab_project/auth/login_status.dart';
 import 'package:ab_project/auth/store.dart';
+import 'package:ab_project/ui/home.dart';
 import 'package:ab_project/ui/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     bool status = Provider.of<LoginStatus>(context).status;
     return Scaffold(
-      body: (status) ? Container(child: Text('Hello'),) : LoginScreen()
+      body: (status) ? 
+      home() : LoginScreen()
     );
   }
 }
