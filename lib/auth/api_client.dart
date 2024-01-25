@@ -11,4 +11,7 @@ abstract class ApiClient {
 
   @POST('/user')
   Future<Message> register(@Body() User user);
+
+  @POST('/login')
+  Future<Message> login(@Body() User user);
 }
