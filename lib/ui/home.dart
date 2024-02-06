@@ -2,6 +2,7 @@ import 'package:ab_project/auth/api_client.dart';
 import 'package:ab_project/auth/store.dart';
 import 'package:ab_project/models/post.dart';
 import 'package:ab_project/ui/add_post.dart';
+import 'package:ab_project/ui/edit_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -55,11 +56,22 @@ class _homeState extends State<home>
                           alignment: Alignment.center,
                           child: Text("${snapShots.data![index].name}", style: TextStyle(color: Colors.red, fontSize: 18),),
                         ),
+                        // Description
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                              child: Text(
+                                "${snapShots.data![index].description}",
+                                maxLines : 2,
+                              ),
+                          ),
+                        ),
+
                         Row(
                           children: [
                             
                             TextButton(onPressed: (){
-
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>EditScreen(snapShots.data![index].id)));
                             }, child: Icon(Icons.edit)),
                             TextButton(onPressed: (){
 
